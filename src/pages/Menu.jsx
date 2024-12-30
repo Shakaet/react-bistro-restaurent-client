@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet} from 'react-helmet-async';
-import Cover from '../shared/Cover';
+
 
 import menuImg from "../../src/assets/home/banner.jpg"
 import useMenu from '../hook/Usemenu';
@@ -11,6 +11,7 @@ import dessertImg from "../assets/menu/dessert-bg.jpeg"
 import pizzaImg from "../assets/menu/pizza-bg.jpg"
 import saladImg from "../assets/menu/salad-bg.jpg"
 import soupImg from "../assets/menu/soup-bg.jpg"
+import Cover from '../shared/Cover';
 
 const Menu = () => {
 
