@@ -1,10 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../Provider';
+import { FaCartArrowDown } from "react-icons/fa";
+import useCart from '../hook/useCart';
 
 const NavBar = () => {
 
   let {user,signOuts}= useContext(AuthContext)
+
+
+  let [cart]= useCart()
+
+  // let [cart,setCart]=useState()
+
+
+  // useEffect(()=>{
+  //   fetch("http://localhost:5000/carts")
+  //   .then(res=>res.json())
+  //   .then(data=>setCart(data))
+  // },[cart])
 
 
   let handleLogout=()=>{
@@ -22,6 +36,13 @@ const NavBar = () => {
       <li><NavLink to="/">Home</NavLink></li>
       <li><NavLink to="/menu">Menu Item</NavLink></li>
       <li><NavLink to="/order/Salad">Order Food</NavLink></li>
+      <li>
+      <Link className="btn">
+      <FaCartArrowDown />
+          <div className="badge badge-secondary">+{cart?.length}</div>
+        </Link>
+                
+        </li>
       
 
       {
@@ -38,7 +59,7 @@ const NavBar = () => {
     </>
     return (
         <div>
-            <div className="navbar fixed z-10 max-w-screen-xl bg-opacity-30 bg-black text-white">
+            <div className="navbar fixed z-10 max-w-screen-xl bg-opacity-30 md:bg-black md:text-white">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
