@@ -19,7 +19,7 @@ const Testimonials = () => {
     let [reviews,setReviews]= useState([])
 
     useEffect(()=>{
-        fetch("reviews.json")
+        fetch("http://localhost:5000/reviews")
         .then(res=>res.json())
         .then(data=>setReviews(data))
     },[])
@@ -42,7 +42,7 @@ const Testimonials = () => {
                             value={item.rating} 
                             readOnly
                             />
-                            <p className='py-8'>{item.details}</p>
+                            <p className='py-8'>{item.recipe}</p>
                             <h3 className='text-2xl text-orange-400'>{item.name}</h3>
                         </div>
                         </SwiperSlide>)
