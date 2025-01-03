@@ -4,10 +4,14 @@ import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import UseAxiosSecured from '../hook/UseAxiosSecured';
+import useCart from '../hook/useCart';
 
 const FoodCard = ({item}) => {
 
     let {name,image,price,recipe,_id}=item
+
+
+    let [,refetch]= useCart()
 
     let axiosSecure= UseAxiosSecured()
 
@@ -39,6 +43,9 @@ const FoodCard = ({item}) => {
     if(response.data.insertedId){
       Swal.fire("cartData Inserted!");
     }
+
+    // updated the state
+    refetch()
   })
   .catch((error) => {
     console.error('Error posting data:', error.response ? error.response.data : error.message);
