@@ -31,13 +31,13 @@ const NavBar = () => {
 
     let link=
     
-    <>
+    <div className='flex items-center'>
 
       <li><NavLink to="/">Home</NavLink></li>
       <li><NavLink to="/menu">Menu Item</NavLink></li>
       <li><NavLink to="/order/Salad">Order Food</NavLink></li>
       <li>
-      <Link className="btn">
+      <Link to={"/dashboard/cart"} className="btn">
       <FaCartArrowDown />
           <div className="badge badge-secondary">+{cart?.length}</div>
         </Link>
@@ -56,7 +56,7 @@ const NavBar = () => {
      
     
     
-    </>
+    </div>
     return (
         <div>
             <div className="navbar fixed z-10 max-w-screen-xl bg-opacity-30 md:bg-black md:text-white">
