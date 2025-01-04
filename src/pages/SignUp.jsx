@@ -4,12 +4,16 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider';
 import Swal from 'sweetalert2';
+import UseAxiosPublic from '../hook/UseAxiosPublic';
+import SocialLogin from '../component/SocialLogin';
 
 const SignUp = () => {
 
          let {createRegistered,updateUserProfile}= useContext(AuthContext)
 
          let nav= useNavigate()
+
+         let  axiosPublic =UseAxiosPublic()
 
 
     const {
@@ -28,6 +32,16 @@ const SignUp = () => {
       console.log(loggedUser)
       updateUserProfile(data.name,data.photoURL)
       .then(()=>{
+
+        let userInfo={
+          name:data.name,
+          email:data.email
+        }
+
+        axiosPublic.post("/users",userInfo)
+        .then(res=>{
+          console.log(res.data)
+        })
          reset()
         Swal.fire({
           title: "Profile Updated Successful!",
@@ -96,6 +110,9 @@ const SignUp = () => {
         </div>
         
       </form>
+      <div className='mx-auto'>
+      <SocialLogin></SocialLogin>
+      </div>
       <p className='text-center mb-4 font-bold text-xl'><small>Already have an Account? <Link className='text-blue-600' to={"/login"}>Please login</Link></small></p>
     </div>
   </div>
