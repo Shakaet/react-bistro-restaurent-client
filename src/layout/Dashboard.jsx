@@ -7,12 +7,13 @@ import useCart from '../hook/useCart';
 import { IoIosContact } from 'react-icons/io';
 import { SiGoogletagmanager } from 'react-icons/si';
 import { RiUserShared2Fill } from 'react-icons/ri';
+import UseAdmin from '../hook/UseAdmin';
 
 const Dashboard = () => {
 
     let [cart]=  useCart()
 
-    let isAdmin =true
+    let [isAdmin] = UseAdmin()
   return (
     <div className="flex flex-col md:flex-row">
       {/* Sidebar */}

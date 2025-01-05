@@ -3,6 +3,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import auth from './component/firebase.init';
 
 import { GoogleAuthProvider } from "firebase/auth";
+import UseAxiosPublic from './hook/UseAxiosPublic';
 
 
 
@@ -15,6 +16,10 @@ const Provider = ({children}) => {
 
     let [user,setUser]=useState(null)
     let [loading,setLoading]=useState(true)
+
+    let axiosPublic= UseAxiosPublic()
+
+   
 
     const provider = new GoogleAuthProvider();
 
@@ -60,7 +65,26 @@ const Provider = ({children}) => {
             
            
               setUser(currentUser)
-            //   console.log(currentUser)
+                //   console.log(currentUser)
+
+              if(currentUser){
+                // get token and store client
+
+                let userInfo={email:currentUser?.email}
+
+                axiosPublic.post("/jwt",userInfo)
+                .then(res=>{
+                    if(res.data.token){
+                        localStorage.setItem("access-token",res.data.token)
+                    }
+                })
+              }
+
+              else{
+                // Todo:remove token (if token stored in the client side:local Storage)
+                localStorage.removeItem("access-token")
+              }
+          
               setLoading(false)
             
             
@@ -70,7 +94,7 @@ const Provider = ({children}) => {
             }
             
           });
-      },[])
+      },[axiosPublic])
 
 let val={
 
