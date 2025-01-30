@@ -6,6 +6,8 @@ const SharedTitle = ({heading,subheading}) => {
              <p className='text-yellow-600 mb-2'>--- {subheading} ---</p>
              <h1 className='text-4xl uppercase border-y-4 py-4'>{heading}</h1>
         </div>
+
+        
     );
 };
 

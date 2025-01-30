@@ -3,6 +3,7 @@ import useCart from '../hook/useCart';
 import { MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import UseAxiosSecured from '../hook/UseAxiosSecured';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const [cart,refetch] = useCart();
@@ -48,7 +49,12 @@ const Cart = () => {
       <div className="flex flex-wrap justify-between items-center gap-4 mb-4">
         <h1 className="text-2xl font-bold">Items: {cart.length}</h1>
         <h1 className="text-2xl font-bold">Total: ${totalPrice.toFixed(2)}</h1>
-        <button className="btn btn-primary">Pay</button>
+        {
+          cart.length ?<Link to={"/dashboard/payment"}><button className="btn btn-primary">Pay</button></Link>:
+          <button disabled className="btn  btn-primary">Pay</button>
+        }
+
+
       </div>
 
       {/* Responsive Table */}
