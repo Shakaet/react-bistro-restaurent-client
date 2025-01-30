@@ -17,6 +17,7 @@ import AdminRoute from './AdminRoute';
 import ManegeItems from '../pages/ManegeItems';
 import UpdateItem from '../pages/UpdateItem';
 import Payment from '../pages/Payment';
+import PaymentHistory from '../pages/PaymentHistory';
 
    export const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ import Payment from '../pages/Payment';
           path:"payment",
           element:<Payment></Payment>
         },
+        {
+          path:"paymentHistory",
+          element:<PaymentHistory></PaymentHistory>
+        },
 
         // admin panel routes
 
@@ -77,6 +82,8 @@ import Payment from '../pages/Payment';
           element:<AdminRoute><ManegeItems></ManegeItems></AdminRoute>
 
         },
+
+       
         {
           path:"updateItem/:id",
           element:<AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
